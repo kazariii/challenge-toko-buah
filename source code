@@ -1,0 +1,63 @@
+import java.util.*;
+
+public class challenge {
+    public static void main(String[] args) {
+    Scanner input = new Scanner(System.in);
+
+    int total_harga_perkode=0;
+    int total_harga=0; 
+    int berat_buah=0;
+    boolean stat=true;
+    int[][] harga_buah = new int[][] {{101, 15000}, {202, 20000}, {303, 25000}};
+
+    menuawal(input);
+
+    while  (stat){
+       System.out.println("Masukkan kode buah yang ingin anda beli: (masukkan 0 jika ingin melanjutkan ke pembayaran)");
+       int kode_buah = input.nextInt();
+       
+       switch (kode_buah) {
+        case 101:
+        total_harga += hargaperjenis(input, harga_buah, 0);
+        System.out.println("Total harga: Rp "+total_harga);
+        break;
+
+        case 202:
+        total_harga += hargaperjenis(input, harga_buah, 1);
+        System.out.println("Total harga: Rp "+total_harga);
+        break;
+
+        case 303:
+        total_harga += hargaperjenis(input, harga_buah, 2);
+        System.out.println("Total harga: Rp "+total_harga);
+        break;
+
+        case 0:
+        System.out.println("Terimakasih telah berbelanja di toko kami, total tagihan anda: Rp"+total_harga);
+        //System.exit(0);
+        stat=false;
+            }
+        }
+    }
+
+    static int hargaperjenis (Scanner input, int harga_buah[][], int index){
+        System.out.println("Berapa kg anda ingin membelinya?");
+        int berat_buah = input.nextInt();
+        return harga_buah[index][1]*berat_buah;
+    }
+    
+    static void menuawal(Scanner input){
+        System.out.println("Halo! Selamat datang di fresh mart, ingin membeli buah? ya/tidak");
+        String beli = input.next();
+        
+        if (beli.equalsIgnoreCase("ya")){
+            System.out.println("\nIni adalah beberapa buah yang tersedia di toko kami:");
+            System.out.println("101. Mangga\t202. Alpukat\t303. Apel");
+            System.out.println("Angka di depannya adalah kode buah, masukkan saat anda melakukan pembelian.\n");
+        }
+        else{
+            System.out.println("Terima kasih telah berkunjung ke toko kami");
+            System.exit(0);
+        }
+    }
+}
